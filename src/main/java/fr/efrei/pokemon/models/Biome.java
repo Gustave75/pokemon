@@ -1,10 +1,13 @@
 package fr.efrei.pokemon.models;
 
-import fr.efrei.pokemon.constants.TypePokemon;
+import fr.efrei.pokemon.constants.TypeBiome;
 import jakarta.persistence.*;
+import fr.efrei.pokemon.models.Pokemon;
+
+import java.util.ArrayList;
 
 @Entity
-public class Pokemon {
+public class Biome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID) // AUTO INCREMENT
@@ -12,10 +15,15 @@ public class Pokemon {
 
 	private String name;
 
-	private int level;
+	//	public ArrayList<String> getPokemonList() {
+	//		return pokemonList;
+	//	}
+
+	//	@ElementCollection
+	//	private ArrayList<String> pokemonList;
 
 	@Enumerated(EnumType.STRING)
-	private TypePokemon type; // SI mon pokemon est type feu -> Type == "FEU"
+	private TypeBiome type; // SI mon biome est type plaine -> Type == "PLAINE"
 
 	public String getName() {
 		return name;
@@ -25,19 +33,11 @@ public class Pokemon {
 		this.name = name;
 	}
 
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public TypePokemon getType() {
+	public TypeBiome getType() {
 		return type;
 	}
 
-	public void setType(TypePokemon type) {
+	public void setType(TypeBiome type) {
 		this.type = type;
 	}
 

@@ -5,6 +5,8 @@ import fr.efrei.pokemon.repositories.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,6 +16,7 @@ public class PokemonService {
 
 	@Autowired
 	public PokemonService(PokemonRepository pokemonRepository) {
+		
 		this.pokemonRepository = pokemonRepository;
 	}
 
@@ -28,6 +31,19 @@ public class PokemonService {
 		// Optional : soit l'objet soit null
 		// SELECT * FROM pokemon WHERE id = :id
 		return pokemonRepository.findById(id).orElse(null);
+	}
+
+	public Pokemon findByName(String name) {
+		// Optional : soit l'objet soit null
+		// SELECT * FROM pokemon WHERE name = :name
+		List<Pokemon> l = pokemonRepository.findAll();
+
+		for (Pokemon p : l) {
+			if (p.getName().equals(name)) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 	// Trajet de la donnée
